@@ -7,6 +7,7 @@ import 'package:demoapp/util/customButton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:image_picker/image_picker.dart';
 
 import 'package:demoapp/util/logoText.dart';
 
@@ -18,9 +19,15 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  void someFunction() {
+  Future<void> get_photo_from_camera() async {
+    final ImagePicker _picker = ImagePicker();
+    final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
     log("Some Function Triggered");
-    context.go('/');
+  }
+
+  Future<void> get_photo_from_gallery() async {
+    final ImagePicker _picker = ImagePicker();
+    final XFile? photo = await _picker.pickImage(source: ImageSource.gallery);
   }
 
   @override
@@ -43,25 +50,28 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Container(
-                  height: contextHeight * 0.035,
-                  width: contextWidth * 0.13,
-                  decoration: BoxDecoration(
-                    color: Color(0xFF5D5D5A),
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(25),
+                GestureDetector(
+                  onTap: get_photo_from_camera,
+                  child: Container(
+                    height: contextHeight * 0.035,
+                    width: contextWidth * 0.13,
+                    decoration: BoxDecoration(
+                      color: Color(0xFF5D5D5A),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(25),
+                      ),
                     ),
-                  ),
-                  padding: EdgeInsets.all(4),
-                  child: Icon(
-                    Icons.camera_alt_outlined,
-                    color: Color(0xFFFFCDAB),
+                    padding: EdgeInsets.all(4),
+                    child: Icon(
+                      Icons.camera_alt_outlined,
+                      color: Color(0xFFFFCDAB),
+                    ),
                   ),
                 ),
                 Text("OR"),
                 MyCustomButtom(
                   btnText: "UPLOAD AN IMAGE",
-                  onPressed: someFunction,
+                  onPressed: get_photo_from_gallery,
                 )
               ],
             ),
