@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -25,6 +26,7 @@ class _MyLoginState extends State<MyLogin> {
       email: _emailController.text.trim(),
       password: _passwordController.text.trim(),
     );
+    context.go('/home');
   }
 
   @override
@@ -38,7 +40,7 @@ class _MyLoginState extends State<MyLogin> {
   Widget build(BuildContext context) {
     var contextHeight = MediaQuery.of(context).size.height;
     var contextWidth = MediaQuery.of(context).size.width;
-
+    
     return Scaffold(
       backgroundColor: Color(0xFFD9D9D9),
       body: Column(

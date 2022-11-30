@@ -3,6 +3,7 @@
 import 'dart:developer';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:logger/logger.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:demoapp/login.dart';
 import 'package:demoapp/socialSignin.dart';
@@ -29,12 +30,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   _navToHome() async {
     await Future.delayed(const Duration(milliseconds: 3500), () {});
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) => MySocialLogin(),
-      ),
-    );
+    context.go('/login');
   }
 
   @override
