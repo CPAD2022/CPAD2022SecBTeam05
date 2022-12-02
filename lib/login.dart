@@ -21,15 +21,20 @@ class MyLogin extends StatefulWidget {
 }
 
 class _MyLoginState extends State<MyLogin> {
+  bool isInvalid = false;
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
   Future signIn() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: _emailController.text.trim(),
-      password: _passwordController.text.trim(),
-    );
-    context.go('/home');
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: _emailController.text.trim(),
+        password: _passwordController.text.trim(),
+      );
+      context.go('/home');
+    } catch (e) {
+      isInvalid = true;
+    }
   }
 
   @override
@@ -43,7 +48,6 @@ class _MyLoginState extends State<MyLogin> {
   Widget build(BuildContext context) {
     var contextHeight = MediaQuery.of(context).size.height;
     var contextWidth = MediaQuery.of(context).size.width;
-
     return Scaffold(
       backgroundColor: Color(0xFFD9D9D9),
       body: Column(
@@ -81,15 +85,15 @@ class _MyLoginState extends State<MyLogin> {
                   controller: _passwordController,
                 ),
                 SizedBox(height: 20),
-                GestureDetector(
-                  onTap: signIn,
-                  child: SizedBox(
-                    width: contextWidth,
-                    height: contextHeight * 0.05,
-                    child: MyCustomButtom(
-                      btnText: 'Login',
-                      onPressed: signIn,
-                    ),
+                isInvalid ? SizedBox(height: 10) : SizedBox(height: 0),
+                isInvalid ? Text('Something Went Wrong!') : Text(''),
+                isInvalid ? SizedBox(height: 10) : SizedBox(height: 0),
+                SizedBox(
+                  width: contextWidth,
+                  height: contextHeight * 0.05,
+                  child: MyCustomButtom(
+                    btnText: 'Login',
+                    onPressed: signIn,
                   ),
                 ),
                 SizedBox(height: 20),

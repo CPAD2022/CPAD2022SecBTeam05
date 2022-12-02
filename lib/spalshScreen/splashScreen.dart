@@ -40,21 +40,14 @@ class _SplashScreenState extends State<SplashScreen> {
     var contextWidth = MediaQuery.of(context).size.width;
     var fontSize = (contextHeight + contextWidth) / 65;
 
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter',
-      theme: ThemeData(
-        primaryColor: Colors.blue,
+    return Scaffold(
+      backgroundColor: Color(0xFFD9D9D9),
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
       ),
-      home: Scaffold(
-        backgroundColor: Color(0xFFD9D9D9),
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Colors.transparent,
-        ),
-        body: Center(
-          child: MyLogoWithText(isImage: true, isSplash: true),
-        ),
+      body: Center(
+        child: MyLogoWithText(isImage: true, isSplash: true),
       ),
     );
   }
