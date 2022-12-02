@@ -2,15 +2,18 @@
 
 import 'dart:developer';
 import 'package:go_router/go_router.dart';
-
+import 'dart:io';
 import 'package:demoapp/util/customButton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:image_picker/image_picker.dart';
-
+import 'package:tflite_flutter_helper/tflite_flutter_helper.dart';
+import 'package:demoapp/MLHandler.dart';
+import 'package:image/image.dart' as img;
 import 'package:demoapp/util/logoText.dart';
 
+late mlHandler _mlHandler;
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
 
@@ -19,15 +22,39 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  Image? _imageWidget;
+  File? _image;
+  Category? category;
   Future<void> get_photo_from_camera() async {
     final ImagePicker _picker = ImagePicker();
     final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
     log("Some Function Triggered");
+    setState(() {
+      _image = File(photo!.path);
+      _imageWidget = Image.file(_image!);
+
+      _predict();
+    });
   }
 
   Future<void> get_photo_from_gallery() async {
     final ImagePicker _picker = ImagePicker();
     final XFile? photo = await _picker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      _image = File(photo!.path);
+      _imageWidget = Image.file(_image!);
+
+      _predict();
+    });
+  }
+
+  void _predict() async {
+    img.Image imageInput = img.decodeImage(_image!.readAsBytesSync())!;
+    var pred = _mlHandler.predict(imageInput);
+
+    setState(() {
+      this.category = pred;
+    });
   }
 
   @override
