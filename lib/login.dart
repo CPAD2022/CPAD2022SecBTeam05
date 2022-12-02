@@ -1,8 +1,11 @@
+import 'package:demoapp/google_login_controller.dart';
+import 'package:demoapp/homePage.dart';
 import 'package:demoapp/util/customTextField.dart';
 import 'package:demoapp/util/customButton.dart';
 import 'package:demoapp/util/logoText.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -40,7 +43,7 @@ class _MyLoginState extends State<MyLogin> {
   Widget build(BuildContext context) {
     var contextHeight = MediaQuery.of(context).size.height;
     var contextWidth = MediaQuery.of(context).size.width;
-    
+
     return Scaffold(
       backgroundColor: Color(0xFFD9D9D9),
       body: Column(
@@ -88,6 +91,18 @@ class _MyLoginState extends State<MyLogin> {
                       onPressed: signIn,
                     ),
                   ),
+                ),
+                SizedBox(height: 20),
+                GestureDetector(
+                  child: Image.asset(
+                    "assets/google.png",
+                    width: 250,
+                  ),
+                  onTap: () {
+                    Provider.of<GoogleSignInController>(context, listen: false)
+                        .login();
+                    context.go('/home');
+                  },
                 ),
               ]),
             ),

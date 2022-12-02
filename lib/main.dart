@@ -1,3 +1,4 @@
+import 'package:demoapp/google_login_controller.dart';
 import 'package:demoapp/socialSignin.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
@@ -8,6 +9,7 @@ import 'firebase_options.dart';
 import 'package:demoapp/spalshScreen/splashScreen.dart';
 import 'package:demoapp/login.dart';
 import 'package:demoapp/homePage.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -48,9 +50,16 @@ void main() async {
   );
 
   runApp(
-    MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      routerConfig: _router,
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+            create: ((context) => GoogleSignInController()),
+            child: MyHomePage())
+      ],
+      child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        routerConfig: _router,
+      ),
     ),
   );
 }
