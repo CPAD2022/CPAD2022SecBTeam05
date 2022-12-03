@@ -5,6 +5,7 @@ import 'package:demoapp/util/customButton.dart';
 import 'package:demoapp/util/logoText.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 import 'package:flutter/material.dart';
@@ -31,6 +32,15 @@ class _MyLoginState extends State<MyLogin> {
         email: _emailController.text.trim(),
         password: _passwordController.text.trim(),
       );
+      context.go('/home');
+    } catch (e) {
+      isInvalid = true;
+    }
+  }
+
+  Future googleSignIn() async {
+    try {
+      Provider.of<GoogleSignInController>(context, listen: false).login();
       context.go('/home');
     } catch (e) {
       isInvalid = true;
@@ -92,21 +102,21 @@ class _MyLoginState extends State<MyLogin> {
                   width: contextWidth,
                   height: contextHeight * 0.05,
                   child: MyCustomButtom(
-                    btnText: 'Login',
+                    btnText: 'LOGIN',
                     onPressed: signIn,
                   ),
                 ),
                 SizedBox(height: 20),
-                GestureDetector(
-                  child: Image.asset(
-                    "assets/google.png",
-                    width: 250,
+                SizedBox(
+                  width: contextWidth,
+                  height: contextHeight * 0.05,
+                  child: MyCustomButtom(
+                    btnText: 'SIGN IN WITH GOOGLE',
+                    onPressed: googleSignIn,
                   ),
-                  onTap: () {
-                    Provider.of<GoogleSignInController>(context, listen: false)
-                        .login();
-                    context.go('/home');
-                  },
+                ),
+                SizedBox(
+                  height: 10,
                 ),
               ]),
             ),
