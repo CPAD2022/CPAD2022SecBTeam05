@@ -7,6 +7,7 @@ import 'package:demoapp/util/customButton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'package:demoapp/util/logoText.dart';
@@ -40,6 +41,84 @@ class _MyHomePageState extends State<MyHomePage> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           MyLogoWithText(isSplash: false, isImage: true),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: RichText(
+              textAlign: TextAlign.center,
+              text: TextSpan(
+                style: GoogleFonts.notoSans(
+                  color: const Color(0xFF5D5D5A),
+                  fontSize: 15,
+                  letterSpacing: 1.25,
+                  fontWeight: FontWeight.w500,
+                  wordSpacing: 10,
+                ),
+                children: [
+                  TextSpan(text: "More than"),
+                  TextSpan(
+                    text: " 9,500 ",
+                    style: GoogleFonts.notoSans(
+                      color: const Color(0xFF5D5D5A),
+                      fontSize: 18,
+                      letterSpacing: 1.25,
+                      fontWeight: FontWeight.bold,
+                      wordSpacing: 10,
+                    ),
+                  ),
+                  TextSpan(
+                      text:
+                          "people are diagnosied with Skin Cancer every day in U.S. Alone. \nMore than"),
+                  TextSpan(
+                    text: " 2 ",
+                    style: GoogleFonts.notoSans(
+                      color: const Color(0xFF5D5D5A),
+                      fontSize: 18,
+                      letterSpacing: 1.25,
+                      fontWeight: FontWeight.bold,
+                      wordSpacing: 10,
+                    ),
+                  ),
+                  TextSpan(text: "people die of the disease every "),
+                  TextSpan(
+                    text: " Hour.\n",
+                    style: GoogleFonts.notoSans(
+                      color: const Color(0xFF5D5D5A),
+                      fontSize: 18,
+                      letterSpacing: 1.25,
+                      fontWeight: FontWeight.bold,
+                      wordSpacing: 10,
+                    ),
+                  ),
+                  TextSpan(
+                      text:
+                          "Skin cancer is a disease that can affect any one. \n Research shows that we can increase the survival rate up to"),
+                  TextSpan(
+                    text: " 99% ",
+                    style: GoogleFonts.notoSans(
+                      color: const Color(0xFF5D5D5A),
+                      fontSize: 18,
+                      letterSpacing: 1.25,
+                      fontWeight: FontWeight.bold,
+                      wordSpacing: 10,
+                    ),
+                  ),
+                  TextSpan(text: "on early detection, and up to"),
+                  TextSpan(
+                    text: " 68% ",
+                    style: GoogleFonts.notoSans(
+                      color: const Color(0xFF5D5D5A),
+                      fontSize: 18,
+                      letterSpacing: 1.25,
+                      fontWeight: FontWeight.bold,
+                      wordSpacing: 10,
+                    ),
+                  ),
+                  TextSpan(
+                      text: " when detected in modarate stage of the disease."),
+                ],
+              ),
+            ),
+          ),
           Padding(
             padding: EdgeInsets.fromLTRB(
               contextWidth * 0.2,
