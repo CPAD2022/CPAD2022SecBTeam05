@@ -1,4 +1,5 @@
 import 'package:demoapp/google_login_controller.dart';
+import 'package:demoapp/result.dart';
 import 'package:demoapp/socialSignin.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
@@ -11,20 +12,12 @@ import 'package:demoapp/login.dart';
 import 'package:demoapp/homePage.dart';
 import 'package:provider/provider.dart';
 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
-  // runApp(MaterialApp(
-  //   debugShowCheckedModeBanner: false,
-  //   initialRoute: 'splash',
-  //   routes: {
-  //     'splash':(context) => const SplashScreen(),
-  //     'login': (context) => MySocialLogin(),
-  //   },
-  // ));
 
   final GoRouter _router = GoRouter(
     routes: <RouteBase>[
@@ -43,6 +36,10 @@ void main() async {
           GoRoute(
             path: 'home',
             builder: (context, state) => MyHomePage(),
+          ),
+          GoRoute(
+            path: 'result',
+            builder: (context, state) => MyResultPage(),
           )
         ],
       ),

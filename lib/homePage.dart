@@ -2,13 +2,17 @@
 
 import 'dart:developer';
 import 'package:go_router/go_router.dart';
-
+import 'dart:io';
 import 'package:demoapp/util/customButton.dart';
+import 'package:demoapp/result.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:image_picker/image_picker.dart';
-
+import 'package:logger/logger.dart';
+import 'package:uuid/uuid.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:demoapp/util/logoText.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -19,15 +23,29 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  Future<void> get_photo_from_camera() async {
+  UploadTask? uploadTask;
+  XFile? photo = null;
+
+  Future<void> getPhoto(ImageSource imageSource) async {
     final ImagePicker _picker = ImagePicker();
-    final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
-    log("Some Function Triggered");
+    photo = await _picker.pickImage(source: imageSource);
+    MyResultPage.image = photo;
+    uploadImage(File(photo!.path));
+    Logger l = Logger();
+    var filePath = photo!.path;
+    l.d(filePath);
+    context.push('/result');
   }
 
-  Future<void> get_photo_from_gallery() async {
-    final ImagePicker _picker = ImagePicker();
-    final XFile? photo = await _picker.pickImage(source: ImageSource.gallery);
+  Future uploadImage(File image) async {
+    var path = "files/${Uuid().v4()}.jpg";
+    var file = image;
+
+    var ref = FirebaseStorage.instance.ref().child(path);
+    uploadTask = ref.putFile(file);
+    var snapshot = await uploadTask!.whenComplete(() => {});
+
+    var downladUrl = await snapshot.ref.getDownloadURL();
   }
 
   @override
@@ -51,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 GestureDetector(
-                  onTap: get_photo_from_camera,
+                  onTap: () => getPhoto(ImageSource.camera),
                   child: Container(
                     height: contextHeight * 0.035,
                     width: contextWidth * 0.13,
@@ -71,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Text("OR"),
                 MyCustomButtom(
                   btnText: "UPLOAD AN IMAGE",
-                  onPressed: get_photo_from_gallery,
+                  onPressed: () => getPhoto(ImageSource.gallery),
                 )
               ],
             ),
