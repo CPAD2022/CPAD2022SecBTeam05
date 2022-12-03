@@ -66,82 +66,133 @@ class _MyHomePageState extends State<MyHomePage> {
               text: TextSpan(
                 style: GoogleFonts.notoSans(
                   color: const Color(0xFF5D5D5A),
-                  fontSize: 15,
+                  fontSize: 12,
                   letterSpacing: 1.25,
                   fontWeight: FontWeight.w500,
                   wordSpacing: 10,
                 ),
                 children: [
-                  TextSpan(text: "More than"),
+                  TextSpan(
+                    text: "More than",
+                    style: GoogleFonts.notoSans(
+                      color: const Color(0xFF5D5D5A),
+                      fontSize: 12,
+                      letterSpacing: 1.25,
+                      fontWeight: FontWeight.bold,
+                      wordSpacing: 10,
+                    ),
+                  ),
                   TextSpan(
                     text: " 9,500 ",
                     style: GoogleFonts.notoSans(
                       color: const Color(0xFF5D5D5A),
-                      fontSize: 18,
+                      fontSize: 15,
                       letterSpacing: 1.25,
                       fontWeight: FontWeight.bold,
                       wordSpacing: 10,
                     ),
                   ),
                   TextSpan(
-                      text:
-                          "people are diagnosied with Skin Cancer every day in U.S. Alone. \nMore than"),
+                    text:
+                        "people are diagnosied with Skin Cancer every day in U.S. Alone. \n\nMore than",
+                    style: GoogleFonts.notoSans(
+                      color: const Color(0xFF5D5D5A),
+                      fontSize: 12,
+                      letterSpacing: 1.25,
+                      fontWeight: FontWeight.bold,
+                      wordSpacing: 10,
+                    ),
+                  ),
                   TextSpan(
                     text: " 2 ",
                     style: GoogleFonts.notoSans(
                       color: const Color(0xFF5D5D5A),
-                      fontSize: 18,
+                      fontSize: 15,
                       letterSpacing: 1.25,
                       fontWeight: FontWeight.bold,
                       wordSpacing: 10,
                     ),
                   ),
-                  TextSpan(text: "people die of the disease every "),
                   TextSpan(
-                    text: " Hour.\n",
+                    text: "people die of the disease every ",
                     style: GoogleFonts.notoSans(
                       color: const Color(0xFF5D5D5A),
-                      fontSize: 18,
+                      fontSize: 12,
                       letterSpacing: 1.25,
                       fontWeight: FontWeight.bold,
                       wordSpacing: 10,
                     ),
                   ),
                   TextSpan(
-                      text:
-                          "Skin cancer is a disease that can affect any one. \n Research shows that we can increase the survival rate up to"),
+                    text: " Hour.\n\n",
+                    style: GoogleFonts.notoSans(
+                      color: const Color(0xFF5D5D5A),
+                      fontSize: 15,
+                      letterSpacing: 1.25,
+                      fontWeight: FontWeight.bold,
+                      wordSpacing: 10,
+                    ),
+                  ),
+                  TextSpan(
+                    text:
+                        "Skin cancer is a disease that can affect any one. \n\nResearch shows that we can increase the survival rate up to",
+                    style: GoogleFonts.notoSans(
+                      color: const Color(0xFF5D5D5A),
+                      fontSize: 12,
+                      letterSpacing: 1.25,
+                      fontWeight: FontWeight.bold,
+                      wordSpacing: 10,
+                    ),
+                  ),
                   TextSpan(
                     text: " 99% ",
                     style: GoogleFonts.notoSans(
                       color: const Color(0xFF5D5D5A),
-                      fontSize: 18,
+                      fontSize: 15,
                       letterSpacing: 1.25,
                       fontWeight: FontWeight.bold,
                       wordSpacing: 10,
                     ),
                   ),
-                  TextSpan(text: "on early detection, and up to"),
+                  TextSpan(
+                    text: "on early detection, and up to",
+                    style: GoogleFonts.notoSans(
+                      color: const Color(0xFF5D5D5A),
+                      fontSize: 12,
+                      letterSpacing: 1.25,
+                      fontWeight: FontWeight.bold,
+                      wordSpacing: 10,
+                    ),
+                  ),
                   TextSpan(
                     text: " 68% ",
                     style: GoogleFonts.notoSans(
                       color: const Color(0xFF5D5D5A),
-                      fontSize: 18,
+                      fontSize: 15,
                       letterSpacing: 1.25,
                       fontWeight: FontWeight.bold,
                       wordSpacing: 10,
                     ),
                   ),
                   TextSpan(
-                      text: " when detected in modarate stage of the disease."),
+                    text: " when detected in modarate stage of the disease.",
+                    style: GoogleFonts.notoSans(
+                      color: const Color(0xFF5D5D5A),
+                      fontSize: 12,
+                      letterSpacing: 1.25,
+                      fontWeight: FontWeight.bold,
+                      wordSpacing: 10,
+                    ),
+                  ),
                 ],
               ),
             ),
           ),
           Padding(
             padding: EdgeInsets.fromLTRB(
-              contextWidth * 0.2,
+              contextWidth * 0.1,
               0,
-              contextWidth * 0.2,
+              contextWidth * 0.1,
               contextHeight * 0.05,
             ),
             child: Row(
