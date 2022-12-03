@@ -79,7 +79,7 @@ class _MyResultPageState extends State<MyResultPage> {
                         thickness: 3,
                       ),
                       Text(
-                        'Negetive',
+                        'Negative',
                         style: GoogleFonts.notoSans(
                           color: Colors.green,
                           fontSize: 20,
